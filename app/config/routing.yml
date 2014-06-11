@@ -1,0 +1,3 @@
+stikmen_reg:
+    resource: "@StikmenRegBundle/Resources/config/routing.yml"
+    prefix:   /

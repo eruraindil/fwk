@@ -1,0 +1,26 @@
+security:
+  encoders:
+    Stikmen\RegBundle\Entity\User:
+      algorithm: bcrypt
+      cost: 12
+
+  role_hierarchy:
+    ROLE_ADMIN:       ROLE_USER
+    ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+  providers:
+    main:
+      entity:
+        class: Stikmen\RegBundle\Entity\User
+        property: username
+
+  firewalls:
+    login_firewall:
+      pattern:   ^/
+      anonymous: ~
+      form_login: ~
+      logout: ~
+
+  access_control:
+    - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/users*, roles: ROLE_ADMIN }
